@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Stevebauman\Purify\Definitions\Html5Definition;
 
 return [

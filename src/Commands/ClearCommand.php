@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Stevebauman\Purify\Commands;
 
 use Illuminate\Config\Repository;

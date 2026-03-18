@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Stevebauman\Purify\Definitions;
 
 use HTMLPurifier_CSSDefinition;

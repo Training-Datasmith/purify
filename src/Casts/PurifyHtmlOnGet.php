@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Stevebauman\Purify\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
