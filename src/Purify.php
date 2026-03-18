@@ -9,15 +9,11 @@ class Purify
 {
     /**
      * The HTML Purifier instance.
-     *
-     * @var HTMLPurifier
      */
-    protected $purifier;
+    protected \HTMLPurifier $purifier;
 
     /**
      * Constructor.
-     *
-     * @param HTMLPurifier_Config $config
      */
     public function __construct(HTMLPurifier_Config $config)
     {

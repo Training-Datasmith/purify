@@ -11,9 +11,7 @@ class PurifyHtmlOnSet extends Caster implements CastsAttributes
      * Cast the given value.
      *
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @param string                              $key
      * @param mixed                               $value
-     * @param array                               $attributes
      *
      * @return string|array|null
      */
@@ -26,9 +24,7 @@ class PurifyHtmlOnSet extends Caster implements CastsAttributes
      * Purify the value for storage.
      *
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @param string                              $key
      * @param mixed                               $value
-     * @param array                               $attributes
      *
      * @return array|string|null
      */
@@ -38,6 +34,6 @@ class PurifyHtmlOnSet extends Caster implements CastsAttributes
             return null;
         }
 
-        return Purify::config($this->config)->clean($value);
+        return (new Purify())->config($this->config)->clean($value);
     }
 }

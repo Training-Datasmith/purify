@@ -10,16 +10,14 @@ class PurifyServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/purify.php', 'purify');
 
         $this->commands(ClearCommand::class);
 
-        $this->app->singleton('purify', function ($app) {
+        $this->app->singleton('purify', function ($app): \Stevebauman\Purify\PurifyManager {
             if ($cache = config('purify.serializer.cache')) {
                 HTMLPurifier_DefinitionCacheFactory::instance()->register($cache, $cache);
             }
@@ -30,10 +28,8 @@ class PurifyServiceProvider extends ServiceProvider
 
     /**
      * Register the publishable configuration.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([

@@ -9,11 +9,9 @@ class Html5Definition implements Definition
     /**
      * Apply rules to the HTML Purifier definition.
      *
-     * @param HTMLPurifier_HTMLDefinition $definition
      *
-     * @return void
      */
-    public static function apply(HTMLPurifier_HTMLDefinition $definition)
+    public static function apply(HTMLPurifier_HTMLDefinition $definition): void
     {
         // http://developers.whatwg.org/sections.html
         $definition->addElement('section', 'Block', 'Flow', 'Common');

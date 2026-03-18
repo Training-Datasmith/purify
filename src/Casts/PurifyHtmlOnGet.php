@@ -23,7 +23,7 @@ class PurifyHtmlOnGet extends Caster implements CastsAttributes
             return null;
         }
 
-        return Purify::config($this->config)->clean($value);
+        return (new Purify())->config($this->config)->clean($value);
     }
 
     /**

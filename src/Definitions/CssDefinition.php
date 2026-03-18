@@ -9,7 +9,6 @@ interface CssDefinition
     /**
      * Apply rules to the CSS Purifier definition.
      *
-     * @param HTMLPurifier_CSSDefinition $definition
      *
      * @return void
      */

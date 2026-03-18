@@ -20,8 +20,6 @@ class PurifyManager extends Manager
 
     /**
      * Constructor.
-     *
-     * @param Container $container
      */
     public function __construct(Container $container)
     {
@@ -137,8 +135,6 @@ class PurifyManager extends Manager
     /**
      * Create a new Purify instance with the given config.
      *
-     * @param string $name
-     * @param array  $config
      *
      * @return Purify
      */
@@ -160,7 +156,6 @@ class PurifyManager extends Manager
     /**
      * Prepare the serializer path in the filesystem storage.
      *
-     * @param string $serializerPath
      *
      * @return void
      */
