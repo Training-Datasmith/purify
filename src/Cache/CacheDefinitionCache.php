@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify\Cache;
 
-use HTMLPurifier_Definition;
-use HTMLPurifier_DefinitionCache;
+use Html_Purifier_definition;
+use Html_Purifier_definition_Cache;
 use Illuminate\Support\Facades\Cache;
-
-class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
+class Cache_Definition_Cache extends Html_Purifier_definition_Cache
 {
     /**
      * The cache repository.
@@ -16,7 +14,6 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      * @var \Illuminate\Contracts\Cache\Repository
      */
     protected $cache;
-
     /**
      * Constructor.
      *
@@ -25,12 +22,8 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
     public function __construct($type)
     {
         parent::__construct($type);
-
-        $this->cache = Cache::driver(
-            config('purify.serializer.driver')
-        );
+        $this->cache = Cache::driver(config('purify.serializer.driver'));
     }
-
     /**
      * Adds a definition object to the cache.
      *
@@ -41,19 +34,15 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function add($def, $config)
     {
-        if (! $this->checkDefType($def)) {
+        if (!$this->check_def_type($def)) {
             return;
         }
-
-        $key = $this->generateKey($config);
-
+        $key = $this->generate_key($config);
         if ($this->cache->has($key)) {
             return false;
         }
-
         return $this->cache->put($key, $this->encode($def));
     }
-
     /**
      * Unconditionally saves a definition object to the cache.
      *
@@ -64,15 +53,12 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function set($def, $config)
     {
-        if (! $this->checkDefType($def)) {
+        if (!$this->check_def_type($def)) {
             return;
         }
-
-        $key = $this->generateKey($config);
-
+        $key = $this->generate_key($config);
         return $this->cache->put($key, $this->encode($def));
     }
-
     /**
      * Replace an object in the cache.
      *
@@ -83,19 +69,15 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function replace($def, $config)
     {
-        if (! $this->checkDefType($def)) {
+        if (!$this->check_def_type($def)) {
             return;
         }
-
-        $key = $this->generateKey($config);
-
-        if (! $this->cache->has($key)) {
+        $key = $this->generate_key($config);
+        if (!$this->cache->has($key)) {
             return false;
         }
-
         return $this->cache->put($key, $this->encode($def));
     }
-
     /**
      * Retrieves a definition object from the cache.
      *
@@ -105,15 +87,12 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function get($config)
     {
-        $key = $this->generateKey($config);
-
-        if (! $this->cache->has($key)) {
+        $key = $this->generate_key($config);
+        if (!$this->cache->has($key)) {
             return false;
         }
-
         return $this->decode($this->cache->get($key));
     }
-
     /**
      * Removes a definition object to the cache.
      *
@@ -123,15 +102,12 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function remove($config)
     {
-        $key = $this->generateKey($config);
-
-        if (! $this->cache->has($key)) {
+        $key = $this->generate_key($config);
+        if (!$this->cache->has($key)) {
             return false;
         }
-
         return $this->cache->delete($key);
     }
-
     /**
      * Clears all objects from cache.
      *
@@ -143,7 +119,6 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
     {
         return $this->cache->clear();
     }
-
     /**
      * Clears all expired (older version or revision) objects from cache.
      *
@@ -153,15 +128,12 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
      */
     public function cleanup($config)
     {
-        $key = $this->generateKey($config);
-
-        if ($this->isOld($key, $config)) {
+        $key = $this->generate_key($config);
+        if ($this->is_old($key, $config)) {
             return $this->cache->delete($key);
         }
-
         return true;
     }
-
     /**
      * Encode the definition for storage.
      *
@@ -173,7 +145,6 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
     {
         return base64_encode(serialize($def));
     }
-
     /**
      * Decode the definition from storage.
      *
@@ -185,11 +156,9 @@ class CacheDefinitionCache extends HTMLPurifier_DefinitionCache
     {
         // Backwards compatibility with old cache definitions.
         $instance = @unserialize($def);
-
-        if ($instance instanceof HTMLPurifier_Definition) {
+        if ($instance instanceof Html_Purifier_definition) {
             return $instance;
         }
-
         return unserialize(base64_decode($def));
     }
 }

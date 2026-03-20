@@ -1,27 +1,23 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify;
 
-use HTMLPurifier;
-use HTMLPurifier_Config;
-
+use Html_Purifier;
+use Html_Purifier_config;
 class Purify
 {
     /**
      * The HTML Purifier instance.
      */
-    protected \HTMLPurifier $purifier;
-
+    protected \Html_Purifier $purifier;
     /**
      * Constructor.
      */
-    public function __construct(HTMLPurifier_Config $config)
+    public function __construct(Html_Purifier_config $config)
     {
-        $this->purifier = new HTMLPurifier($config);
+        $this->purifier = new Html_Purifier($config);
     }
-
     /**
      * Sanitize the given input.
      *
@@ -31,17 +27,14 @@ class Purify
      */
     public function clean($input)
     {
-        return is_array($input)
-            ? $this->purifier->purifyArray($input)
-            : $this->purifier->purify($input);
+        return is_array($input) ? $this->purifier->purify_array($input) : $this->purifier->purify($input);
     }
-
     /**
      * Get the underlying HTML Purifier instance.
      *
      * @return HTMLPurifier
      */
-    public function getPurifier()
+    public function get_purifier()
     {
         return $this->purifier;
     }

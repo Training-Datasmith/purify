@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify\Definitions;
 
-use HTMLPurifier_HTMLDefinition;
-
+use Html_Purifier_html_Definition;
 class Html5Definition implements Definition
 {
     /**
@@ -13,61 +11,42 @@ class Html5Definition implements Definition
      *
      *
      */
-    public static function apply(HTMLPurifier_HTMLDefinition $definition): void
+    public static function apply(Html_Purifier_html_Definition $definition): void
     {
         // http://developers.whatwg.org/sections.html
-        $definition->addElement('section', 'Block', 'Flow', 'Common');
-        $definition->addElement('nav', 'Block', 'Flow', 'Common');
-        $definition->addElement('article', 'Block', 'Flow', 'Common');
-        $definition->addElement('aside', 'Block', 'Flow', 'Common');
-        $definition->addElement('header', 'Block', 'Flow', 'Common');
-        $definition->addElement('footer', 'Block', 'Flow', 'Common');
-        $definition->addElement('address', 'Block', 'Flow', 'Common');
-        $definition->addElement('hgroup', 'Block', 'Required: h1 | h2 | h3 | h4 | h5 | h6', 'Common');
-
+        $definition->add_element('section', 'Block', 'Flow', 'Common');
+        $definition->add_element('nav', 'Block', 'Flow', 'Common');
+        $definition->add_element('article', 'Block', 'Flow', 'Common');
+        $definition->add_element('aside', 'Block', 'Flow', 'Common');
+        $definition->add_element('header', 'Block', 'Flow', 'Common');
+        $definition->add_element('footer', 'Block', 'Flow', 'Common');
+        $definition->add_element('address', 'Block', 'Flow', 'Common');
+        $definition->add_element('hgroup', 'Block', 'Required: h1 | h2 | h3 | h4 | h5 | h6', 'Common');
         // http://developers.whatwg.org/grouping-content.html
-        $definition->addElement('figure', 'Block', 'Optional: (figcaption, Flow) | (Flow, figcaption) | Flow', 'Common');
-        $definition->addElement('figcaption', 'Inline', 'Flow', 'Common');
-
+        $definition->add_element('figure', 'Block', 'Optional: (figcaption, Flow) | (Flow, figcaption) | Flow', 'Common');
+        $definition->add_element('figcaption', 'Inline', 'Flow', 'Common');
         // http://developers.whatwg.org/the-video-element.html#the-video-element
-        $definition->addElement('video', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', [
-            'src' => 'URI',
-            'type' => 'Text',
-            'width' => 'Length',
-            'height' => 'Length',
-            'poster' => 'URI',
-            'preload' => 'Enum#auto,metadata,none',
-            'controls' => 'Bool',
-        ]);
-        $definition->addElement('source', 'Block', 'Flow', 'Common', [
-            'src' => 'URI',
-            'type' => 'Text',
-        ]);
-
+        $definition->add_element('video', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', ['src' => 'URI', 'type' => 'Text', 'width' => 'Length', 'height' => 'Length', 'poster' => 'URI', 'preload' => 'Enum#auto,metadata,none', 'controls' => 'Bool']);
+        $definition->add_element('source', 'Block', 'Flow', 'Common', ['src' => 'URI', 'type' => 'Text']);
         // http://developers.whatwg.org/interactive-elements.html
-        $definition->addElement('details', 'Block', 'Flow', 'Common');
-        $definition->addElement('summary', 'Inline', 'Flow', 'Common', [
-            'open' => 'Bool',
-        ]);
-
+        $definition->add_element('details', 'Block', 'Flow', 'Common');
+        $definition->add_element('summary', 'Inline', 'Flow', 'Common', ['open' => 'Bool']);
         // http://developers.whatwg.org/text-level-semantics.html
-        $definition->addElement('u', 'Inline', 'Inline', 'Common');
-        $definition->addElement('s', 'Inline', 'Inline', 'Common');
-        $definition->addElement('var', 'Inline', 'Inline', 'Common');
-        $definition->addElement('sub', 'Inline', 'Inline', 'Common');
-        $definition->addElement('sup', 'Inline', 'Inline', 'Common');
-        $definition->addElement('mark', 'Inline', 'Inline', 'Common');
-        $definition->addElement('wbr', 'Inline', 'Empty', 'Core');
-
+        $definition->add_element('u', 'Inline', 'Inline', 'Common');
+        $definition->add_element('s', 'Inline', 'Inline', 'Common');
+        $definition->add_element('var', 'Inline', 'Inline', 'Common');
+        $definition->add_element('sub', 'Inline', 'Inline', 'Common');
+        $definition->add_element('sup', 'Inline', 'Inline', 'Common');
+        $definition->add_element('mark', 'Inline', 'Inline', 'Common');
+        $definition->add_element('wbr', 'Inline', 'Empty', 'Core');
         // http://developers.whatwg.org/edits.html
-        $definition->addElement('ins', 'Block', 'Flow', 'Common', ['cite' => 'URI', 'datetime' => 'CDATA']);
-        $definition->addElement('del', 'Block', 'Flow', 'Common', ['cite' => 'URI', 'datetime' => 'CDATA']);
-
-        $definition->addAttribute('table', 'height', 'Text');
-        $definition->addAttribute('td', 'border', 'Text');
-        $definition->addAttribute('th', 'border', 'Text');
-        $definition->addAttribute('tr', 'width', 'Text');
-        $definition->addAttribute('tr', 'height', 'Text');
-        $definition->addAttribute('tr', 'border', 'Text');
+        $definition->add_element('ins', 'Block', 'Flow', 'Common', ['cite' => 'URI', 'datetime' => 'CDATA']);
+        $definition->add_element('del', 'Block', 'Flow', 'Common', ['cite' => 'URI', 'datetime' => 'CDATA']);
+        $definition->add_attribute('table', 'height', 'Text');
+        $definition->add_attribute('td', 'border', 'Text');
+        $definition->add_attribute('th', 'border', 'Text');
+        $definition->add_attribute('tr', 'width', 'Text');
+        $definition->add_attribute('tr', 'height', 'Text');
+        $definition->add_attribute('tr', 'border', 'Text');
     }
 }

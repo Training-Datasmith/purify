@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify\Facades;
 
 use Illuminate\Support\Facades\Facade;
-
 /**
  * @method static \HTMLPurifier              getPurifier()
  * @method static array|string               clean(array|string $input)
@@ -18,7 +16,7 @@ class Purify extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function get_facade_accessor()
     {
         return 'purify';
     }

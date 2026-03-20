@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify\Definitions;
 
-use HTMLPurifier_HTMLDefinition;
-
+use Html_Purifier_html_Definition;
 interface Definition
 {
     /**
@@ -14,5 +12,5 @@ interface Definition
      *
      * @return void
      */
-    public static function apply(HTMLPurifier_HTMLDefinition $definition);
+    public static function apply(Html_Purifier_html_Definition $definition);
 }

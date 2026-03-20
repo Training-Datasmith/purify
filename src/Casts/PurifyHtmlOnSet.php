@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Stevebauman\Purify\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Database\Eloquent\Casts_Attributes;
 use Stevebauman\Purify\Facades\Purify;
-
-class PurifyHtmlOnSet extends Caster implements CastsAttributes
+class Purify_Html_On_Set extends Caster implements Casts_Attributes
 {
     /**
      * Cast the given value.
@@ -21,7 +19,6 @@ class PurifyHtmlOnSet extends Caster implements CastsAttributes
     {
         return $value;
     }
-
     /**
      * Purify the value for storage.
      *
@@ -35,7 +32,6 @@ class PurifyHtmlOnSet extends Caster implements CastsAttributes
         if (is_null($value)) {
             return null;
         }
-
         return (new Purify())->config($this->config)->clean($value);
     }
 }
